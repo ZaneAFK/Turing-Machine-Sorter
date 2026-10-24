@@ -1,7 +1,4 @@
-"""Writes the sorter's Turing machine as a TSV file.
-
-Usage: python Generator.py --output OUTPUT.tsv
-
+"""
 The machine is a bubble sort on adjacent words, using only the head position and the state.
 Two neighbouring words A and B have their matching digits exactly 17 cells apart, so the
 machine compares them digit by digit by carrying one digit across that distance inside its
