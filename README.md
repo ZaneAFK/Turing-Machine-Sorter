@@ -10,19 +10,19 @@ The sorter is written in the 40908 Theory of Computing Science course's Turing M
 .
 ├── README.md
 └── src/
-    ├── Machine.py          the Turing machine and its run loop
-    ├── Parser.py           reads a machine file into a machine, and lints it
-    ├── Simulator.py        runs a machine file on an input
     ├── Generator.py        writes the sorter's machine file
+    ├── tm-reference/       the course's reference checker and simulator
+    │   ├── tm.py           checks machine files and runs them
+    │   ├── README.txt      the reference tool's own documentation
+    │   ├── examples/       valid machine files
+    │   └── broken/         invalid or questionable machine files
     └── test/
-        ├── ParserTest.py   tests for the parser
-        └── MachineTest.py  tests for the machine and the generated sorter
+        └── MachineTest.py  tests for the generated sorter
 ```
 
-- **Machine** holds the rule table and runs it on an input. A run ends with a result made of the final state, the tape contents and the head position. The final state is the accept state on success, the error state on a missing transition or a move off the left edge of the tape, or another halting state for a rejection.
-- **Parser** turns a TSV machine file into a machine. It rejects files that break the format, with an error naming the offending line, and can also report warnings such as unreachable states.
-- **Simulator** combines the parser and the machine: give it a machine file and an input, and it gives back the result.
 - **Generator** produces the sorter's machine file.
+- **tm-reference** is the tutor's checker and simulator. It is the canonical definition of the machine file format, so it decides whether the generated file is valid and what it does. It is not modified here.
+- **MachineTest** checks the generated sorter by running it with the reference simulator.
 
 ## Using each tool
 
@@ -36,13 +36,15 @@ Run the generator with the name of the file to create.
 python Generator.py --output sorter.tsv
 ```
 
-### Simulator
+### Checker and simulator
 
-Run the simulator with a machine file and an input string. It prints the final state, the final tape and the final head position.
+The course's reference tool checks a machine file and runs it on one or more input strings. It prints whether the file is valid, then the final state, the number of steps and the final tape for each input. Quote each input so the shell does not interpret the brackets.
 
 ```sh
-python Simulator.py --machine sorter.tsv --input '[0000000000000009,00000000000000A1,0000000000000002]'
+python tm-reference/tm.py sorter.tsv '[0000000000000009,00000000000000A1,0000000000000002]'
 ```
+
+Run it with just a machine file to check the file without running it. See `src/tm-reference/README.txt` for its other options.
 
 ## Running the tests
 
