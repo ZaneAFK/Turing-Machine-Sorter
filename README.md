@@ -11,18 +11,18 @@ The sorter is written in the 40908 Theory of Computing Science course's Turing M
 ├── README.md
 └── src/
     ├── Generator.py        writes the sorter's machine file
-    ├── tm-reference/       the course's reference checker and simulator
+    ├── tm_reference/       the course's reference checker and simulator
     │   ├── tm.py           checks machine files and runs them
     │   ├── README.txt      the reference tool's own documentation
     │   ├── examples/       valid machine files
     │   └── broken/         invalid or questionable machine files
     └── test/
-        └── MachineTest.py  tests for the generated sorter
+        └── GeneratorTest.py  tests for the generated sorter
 ```
 
 - **Generator** produces the sorter's machine file.
-- **tm-reference** is the tutor's checker and simulator. It is the canonical definition of the machine file format, so it decides whether the generated file is valid and what it does. It is not modified here.
-- **MachineTest** checks the generated sorter by running it with the reference simulator.
+- **tm_reference** is the tutor's checker and simulator. It is the canonical definition of the machine file format, so it decides whether the generated file is valid and what it does. It is not modified here.
+- **GeneratorTest** checks the generated sorter by running it with the reference simulator.
 
 ## Using each tool
 
@@ -41,10 +41,10 @@ python Generator.py --output sorter.tsv
 The course's reference tool checks a machine file and runs it on one or more input strings. It prints whether the file is valid, then the final state, the number of steps and the final tape for each input. Quote each input so the shell does not interpret the brackets.
 
 ```sh
-python tm-reference/tm.py sorter.tsv '[0000000000000009,00000000000000A1,0000000000000002]'
+python tm_reference/tm.py sorter.tsv '[0000000000000009,00000000000000A1,0000000000000002]'
 ```
 
-Run it with just a machine file to check the file without running it. See `src/tm-reference/README.txt` for its other options.
+Run it with just a machine file to check the file without running it. See `src/tm_reference/README.txt` for its other options.
 
 ## Running the tests
 
