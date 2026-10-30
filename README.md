@@ -2,7 +2,7 @@
 
 A toolchain for building and testing a Turing machine that sorts a list of 16-digit hex words.
 
-The sorter is written in the 40908 Theory of Computing Science course's Turing Machine Specification Format, a five-column tab-separated (TSV) file. The TSV file is the turing machine which is produced by `Generator.py`.
+The sorter is written in the 41080 Theory of Computing Science course's Turing Machine Specification Format, a five-column tab-separated (TSV) file. The TSV file is the turing machine which is produced by `Generator.py`.
 
 ## Repository structure
 
