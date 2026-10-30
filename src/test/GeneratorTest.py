@@ -112,10 +112,10 @@ class TestSorting:
         assert tape_of(final) == '[0000000000000000,FFFFFFFFFFFFFFFF]'
 
     def test_worked_example(self, machine):
-        final = tm.run(machine, '[0000000000000009,00000000000000A1,0000000000000002]')
+        final = tm.run(machine, '[0000000000000009,00000000000000C1,0000000000000002]')
         assert final.state == '✔'
         assert final.head == 0
-        assert tape_of(final) == '[0000000000000002,0000000000000009,00000000000000A1]'
+        assert tape_of(final) == '[0000000000000002,0000000000000009,00000000000000C1]'
 
     def test_random_lists_full_alphabet(self, machine):
         rng = random.Random(5)
